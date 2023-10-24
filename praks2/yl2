@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Skript väljastab tervituse kasutajale
+whoami=$(whoami)
+
+echo -n "Tere, ${whoami^}!"
+
