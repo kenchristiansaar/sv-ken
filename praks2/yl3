@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Skript väljastab tervituse kasutajale
+whoami=$(whoami)
+
+echo -n "Tere, ${whoami^}!"
+
+date +"Today is %A, %B %m, %Y"
