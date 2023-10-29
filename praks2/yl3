@@ -3,6 +3,10 @@
 # Skript väljastab tervituse kasutajale
 whoami=$(whoami)
 
-echo -n "Tere, ${whoami^}!"
+echo "Tere, ${whoami^}!"
 
 date +"Today is %A, %B %m, %Y"
+date +"Time is %H:%M"
+
+date +"Calendar of %B %Y"
+cal | tail -n 7
