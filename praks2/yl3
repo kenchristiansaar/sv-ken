@@ -5,8 +5,12 @@ whoami=$(whoami)
 
 echo "Tere, ${whoami^}!"
 
+echo -en '\n'
+
 date +"Today is %A, %B %m, %Y"
 date +"Time is %H:%M"
+
+echo -en '\n'
 
 date +"Calendar of %B %Y"
 cal | tail -n 7
