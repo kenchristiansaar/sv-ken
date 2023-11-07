@@ -9,5 +9,6 @@ read  nimi
 eesnimi="${nimi% *}"
 perenimi="${nimi##* }"
 
-echo "$eesnimi"
-echo "$perenimi"
+echo "Tere tulemast, $nimi."
+
+echo "Sinu eesnimi on $eesnimi ja perenimi on $perenimi."
