@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# Skipt, kuhu sisestad kellaaja ning saad vastava tervituse koos kasutajanimega."
+
+# Määran whoami käsu muutujaks, ning muudan esitähe suureks.
+kasutaja1=$(whoami)
+kasutaja=${kasutaja1^}
+
+# Määran aja tunni muutujaks, et läbi selle vastav tervitus saata ning
+# edastan teksti, mis ütleb mis kell praegu on.
+aeg=$(date +'%H')
+
+echo "Kell on praegu $(date +'%T')."
+
+# Otsib sobiva tervituse ning tervitab vastavalt.
+
+if [ $aeg -ge 6 -a $aeg -lt 12 ]; then
+	echo "Tere hommikust, $kasutaja!"
+
+elif [ $aeg -ge 12  -a $aeg -lt 18 ]; then
+	echo "Tere päevast, $kasutaja!"
+
+elif [ $aeg -ge 18 -a $aeg -lt 22 ]; then
+	echo "Tere õhtust, $kasutaja!"
+
+elif [ $aeg -ge 22 -a $aeg -le 24 ] || [ $aeg -ge 0 -a $aeg -lt 6 ]; then
+	echo "Head ööd, $kasutaja!"
+
+else
+	echo "Vale sisend!"
+
+fi
+# Skripti lõpp
