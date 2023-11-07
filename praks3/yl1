@@ -4,7 +4,10 @@
 
 echo -n "Sisesta oma ees- ja perenimi: "
 
-read nimi
+read  nimi
 
-echo "Tere tulemast, $nimi"
+eesnimi="${nimi% *}"
+perenimi="${nimi##* }"
 
+echo "$eesnimi"
+echo "$perenimi"
