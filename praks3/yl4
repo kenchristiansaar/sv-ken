@@ -13,5 +13,12 @@ bussid_tais=$((reisijaid / kohti))
 maha_jaanud=$((reisijaid % kohti))
 
 # Edastab arvutuste tulemused lause vormis
+if test $maha_jaanud -gt 0
+then
+	bussid_tais2=$(($bussid_tais + 1)) 
+	echo "Busse läheb vaja $bussid_tais2, sest muidu jääks $maha_jaanud inimest maha."
+else
+	echo "Kõik reisijad mahuvah täpselt $bussid_tais bussi peale ära."
+fi
 
-echo "Täidetud busse on $bussid_tais ning maha on jäänud $maha_jaanud inimest."
+
