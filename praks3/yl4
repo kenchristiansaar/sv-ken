@@ -12,4 +12,6 @@ read -p "Mitu kohta on bussis? " kohti
 bussid_tais=$((reisijaid / kohti))
 maha_jaanud=$((reisijaid % kohti))
 
-echo "$bussid_tais $maha_jaanud"
+# Edastab arvutuste tulemused lause vormis
+
+echo "Täidetud busse on $bussid_tais ning maha on jäänud $maha_jaanud inimest."
