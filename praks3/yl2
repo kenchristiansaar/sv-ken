@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Skript kasutab muutujaid, et koostada terviklik lause
+
+# Määrasin muutujad
+aasta="2016"
+president="Kersti Kaljulaid"
+lause_keskosa=". aastal valiti Eesti presidendiks "
+
+# Määrasin uue muutuja, mis koosneb teistest muutujatest, et koostada lause
+lause="$aasta$lause_keskosa$president"
+
+# Edastan lause muutuja tekstina
+echo "$lause"
