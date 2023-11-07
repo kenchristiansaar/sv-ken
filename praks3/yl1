@@ -2,7 +2,7 @@
 
 # Skript küsib kasutaja ees- ja perekonnanime ning tervitab neid.
 
-echo "Sisesta oma ees- ja perenimi: "
+echo -n "Sisesta oma ees- ja perenimi: "
 
 read nimi
 
