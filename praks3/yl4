@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Skript bussiekskursjoonide korraldajale abiks
+
+# Küsib mitu reisijat ja kohta on
+
+read -p "Mitu reisijat on grupis? " reisijaid
+read -p "Mitu kohta on bussis? " kohti
+
+# Arvutab mitu bussi on täis ning mitu reisijat on maha jäänud
+
+bussid_tais=$((reisijaid / kohti))
+maha_jaanud=$((reisijaid % kohti))
+
+echo "$bussid_tais $maha_jaanud"
