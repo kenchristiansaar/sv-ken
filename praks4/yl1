@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Kontrollib kas arv on paaris või paaritu
+
+echo -n "Sisesta suvaline täisarv: "
+read arv
+
+# jabag arvu 2-ga, et saada jääk
+
+jaak=$(( $arv % 2 ))
+
+# kui jääk on 0 on arv paaris, kui jääk on 1, siis on paaritu
+
+if [ $jaak -eq 0 ]
+then
+	echo "$arv on paaris."
+else
+	echo "$arv on paaritu."
+fi
+# skripti lõpp
