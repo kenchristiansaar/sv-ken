@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Skript, mis arvutab  paarisarvude summa vahemikus 1-10 (kaasaarvatud)
+
+summa=0
+
+# Genereerib paarisarvud vahemikus 1 kuni 10 (kaasaarvatud)
+
+for (( arv=1; arv <11; arv++ ))
+
+# Kui genereeritud, siis jagab 2-ga, kui jaak on 0, siis on paaris ja liidab algsele summale ning kirjutab v2lja, mis
+# summa on.
+
+do
+	jaak=$(($arv % 2))
+
+	if [ $jaak -eq 0 ]; then
+		summa=$(($summa + $arv))
+		echo $summa
+	fi
+done
+
+# Prindib lause, mis ytleb, mis arvude summa on.
+
+echo "Arvude vahemikus 1 kuni 10 (kaasaarvatud) paarisarvude summa on: $summa"
+
+# Skripti l6pp
