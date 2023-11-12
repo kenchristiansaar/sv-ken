@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Skript, mis arvutab sisestatud t2isarvu numbrite summa
+
+# Kysime suvalise t2isarvu
+
+read -p "Sisesta suvaline täisarv: " arv
+
+summa=0
+
+# Arvutab sisestatud arvu osade summa
+
+while [ $arv -ne 0 ]
+do
+	jaak=$(($arv % 10))
+	summa=$(($summa + $jaak))
+	arv=$(($arv / 10))
+done
+echo $summa
+
+# Skripti lõpp
