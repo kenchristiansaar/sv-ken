@@ -25,7 +25,7 @@ fi
 
 # Loome kasutaja ilma paroolita
 
-useradd $kasutajanimi
+useradd -s $kasutajanimi
 
 # Loome kodukataloogi
 
