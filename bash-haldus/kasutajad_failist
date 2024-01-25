@@ -17,7 +17,7 @@ else
 		for nimi in $(cat $failinimi)
 
 			do
-				sh lisa_kasutaja $kasutajanimi
+				sh lisa_kasutaja $nimi
 
 			done
 		else
