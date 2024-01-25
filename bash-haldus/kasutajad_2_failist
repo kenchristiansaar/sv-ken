@@ -1,37 +1,43 @@
 #!/bin/bash
 
-if [ $# -ne 1 ]; then
+if [ $# -ne 2 ]; then
   echo "Kasutusjuhend: $0 failinimi1 failinimi2"
 else
   failinimi1=$1
   failinimi2=$2
-  if [ -f $failinimi1 -a -r $failinimi1 ]; then
-    echo "Fail on korras"
-    for rida in $(cat $failinimi1)
+  if [ -f $failinimi1 -a -r $failinimi1 -a -f $failinimi2 -a -r $failinimi2 ]; then
+    echo "Failid on korras"
+    for kasutajanimi in $(cat $failinimi1)
     do
-      kasutajanimi=$(echo "$rida" | cut -f1 -d:)
-      sh lisa_kasutaja $kasutajanimi
-      echo "$rida" | chpasswd 
+      useradd $kasutajanimi -m -s /bin/bash
+      kasu_tulemus_nimi=$?
+      for parool in $(cat $failinimi2)
+        do
+          echo "$parool" | chpasswd
+          kasu_tulemus_parool=$?
+        done
+    if [ $kasu_tulemus_nimi -eq 0 -a $kasu_tulemus_parool -eq 0 ]; then
+      echo "Kasutaja nimega $kasutajanimi ja parooliga $parool on lisatud süsteemi"
+      cat /etc/passwd | grep $kasutajanimi
+      ls -la /home/$kasutajanimi
+    else
+      echo "Probleem kasutaja $kasutajanimi lisamisega"
+        if [ $kasu_tulemus_nimi -eq 0 ]; then
+          echo "Probleem seosneb parooliga. Veakood: $kasu_tulemus_parool"
+        else
+          echo "Probleem seosneb nimega. Veakood: $kasu_tulemus_nimi"
+        fi
+    fi
     done
   else
-    echo "probleem failiga $failinimi"
+    if [ -f $failinimi1 -a -r $failinimi1 ]; then
+      echo "Probleem failiga $failinimi2"
+    else
+      if [ -f $failinimi2 -a -r $failinimi2 ]; then
+        echo "Probleem failiga $failinimi1"
+      else
+        echo "Probleem failidega $failinimi1 $failinimi2"
+      fi
+    fi
   fi
 fi
-
-
-if [ $# -ne 1 ]; then
-  echo "Kasutusjuhend: $0 kasutajanimi"
-else
-  kasutajanimi=$1 
-  useradd $kasutajanimi -m -s /bin/bash
-  kasu_tulemus=$?
-  if [ $kasu_tulemus -eq 0 ]; then
-    echo "Kasutaja nimega $kasutajanimi on lisatud süsteemi"
-    cat /etc/passwd | grep $kasutajanimi
-    ls -la /home/$kasutajanimi
-  else
-    echo "probleem kasutaja $kasutajanimi lisamisega"
-    echo "probleemi kood on $kasu_tulemus"
-  fi
-fi
-
