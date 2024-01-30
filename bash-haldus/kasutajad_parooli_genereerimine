@@ -1,0 +1,37 @@
+#!/bin/bash
+
+if [ $# -ne 1 ]; then
+  echo "Kasutusjuhend: $0 nimedefailinimi"
+else
+  failinimi1=$1
+  if [ -f $failinimi1 -a -r $failinimi1 ]; then
+    echo "Fail on korras"
+	for kasutajanimi in $(cat $failinimi1)
+	do
+      useradd "$kasutajanimi" -m -s /bin/bash
+      kasu_tulemus_nimi=$?
+      parool=$(pwgen -s 8 -1)
+      echo "$kasutajanimi:$parool" | chpasswd
+      kasu_tulemus_parool=$?
+      echo "$kasutajanimi - $parool" >> loodud_kasutajad_paroolidega
+      if [ $kasu_tulemus_nimi -eq 0 -a $kasu_tulemus_parool -eq 0 ]; then
+        echo "Kasutaja nimega $kasutajanimi ja parooliga $parool on lisatud süsteemi"
+        cat /etc/passwd | grep $kasutajanimi
+        ls -la /home/$kasutajanimi
+      else
+        echo "Probleem kasutaja $kasutajanimi lisamisega"
+        if [ $kasu_tulemus_nimi -eq 0 ]; then
+          echo "Probleem seosneb parooliga. Veakood: $kasu_tulemus_parool"
+        else
+          if [ $kasu_tulemus_parool -eq 0 ]; then
+            echo "Probleem seosneb nimega. Veakood: $kasu_tulemus_nimi"
+          else
+            echo "Probleem seosneb nii nime kui ka parooliga. Veakoodid: $kasu_tulemus_nimi $kasu_tulemus_parool"
+          fi
+        fi
+      fi
+    done
+  else
+    echo "Probleem failiga $failinimi1"
+  fi
+fi
